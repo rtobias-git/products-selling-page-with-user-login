@@ -1,0 +1,29 @@
+#bottom {
+    background-color: #f8f9fa;
+    padding: 20px;
+    margin: 10px 0px 0px 0px;
+    text-align: center;
+    border: 1px solid #dee2e6;
+}
+
+.center_content {
+    /*background-color: #dddddd;*/
+    padding: 5px;
+    width: 80vw;
+    margin: 0 auto;
+    min-height: 70vh;
+}
+.align-center {
+    /*background-color: red;*/
+    margin: 0 auto;
+    width: 70%;
+}
+
+@media (max-width: 900px) {
+    .align-center {
+        width: 100%;
+    }
+    .center_content {
+        width: 100%;
+    }
+}

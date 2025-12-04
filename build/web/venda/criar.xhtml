@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="jakarta.faces.facelets"
+                template="/WEB-INF/template.xhtml"
+                xmlns:h="jakarta.faces.html"
+                xmlns:f="jakarta.faces.core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="content">
+        <h:form id="form" class="align-center">
+            
+            <p:panelGrid columns="4" layout="tabular" style="width: 100%">
+                <f:facet name="header">
+                    Venda
+                </f:facet>
+
+                <h:outputLabel for="produtoSelect" value="Produto" />
+                <p:selectOneMenu id="produtoSelect" required="true" 
+                                 requiredMessage="Selecione o Produto" 
+                                 style="width: 250px" value="#{vendaController.produtoSelecionado}">
+                    <f:selectItem itemLabel="Selecione" itemValue="" />
+                    <f:selectItems value="#{vendaController.produtosFiltrados}" 
+                                   var="item" itemLabel="#{item.nome}" itemValue="#{item}" />
+                </p:selectOneMenu>
+
+                <h:outputLabel for="quantidade" value="Quantidade" />
+                <p:inputNumber id="quantidade"
+                               required="true"
+                               minValue="1"
+                               requiredMessage="Informe a Quantidade"
+                               size="2" value="#{vendaController.quantidade}" />
+            </p:panelGrid>
+
+            <p:commandButton value="Adicionar" 
+                             action="#{vendaController.adicionar}"
+                             update=":growl tabela" 
+                             style="margin-right:10px"/>
+
+                <h:outputLabel for="categoria" value="Categoria" style="font-weight: bold"/>
+                <p:selectOneMenu id="categoria" value="#{vendaController.categoriaSelecionadaCodigo}">
+                    <f:selectItem itemLabel="Selecione" itemValue="" />
+                    <f:selectItems value="#{vendaController.buscarCategorias()}" 
+                                   var="item" 
+                                   itemLabel="#{item.nome}" 
+                                   itemValue="#{item.codigo}" />
+                </p:selectOneMenu>
+                <p:commandButton value="Filtrar"
+                                 action="#{vendaController.filtrar}"
+                                 update=":form:tabela :form:produtoSelect" />
+  
+            <p:dataTable id="tabela" value="#{vendaController.itensVenda}" var="item">
+                <p:column headerText="Produto">
+                    <h:outputText value="#{item.produto.nome}" />
+                </p:column>
+                <p:column headerText="Quantidade">
+                    <h:outputText value="#{item.quantidade}" />
+                </p:column>
+                <p:column headerText="Preço">
+                    <h:outputText value="#{item.preco}" />
+                </p:column>
+                <p:column headerText="Excluir">
+                    <p:commandButton icon="pi pi-trash"
+                                     action="#{vendaController.excluir(item)}"
+                                     update="tabela :form:growl"
+                                     process="@this"/>
+                </p:column>
+            </p:dataTable>
+
+            <p:commandButton value="Visualizar Pedido" 
+                             action="/venda/visualizar" />
+        </h:form>
+    </ui:define>
+</ui:composition>
