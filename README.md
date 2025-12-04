@@ -1,55 +1,55 @@
-SISTEMA DE GESTÃO DE VENDAS
+SALES MANAGEMENT SYSTEM
 
-1. CONTEXTO E OBJETIVO
+1. CONTEXT AND OBJECTIVE
 
-Este projeto foi desenvolvido como um estudo para minha prova de ferramentas na faculdade.
+This project was developed as a study for my college tools exam.
 
-O objetivo principal era:
-- Criar uma interface web funcional para simular o ciclo de vida completo de uma transação de Ponto de Venda.
+The main objective was:
+- To create a functional web interface to simulate the complete life cycle of a Point of Sale transaction.
 
-2. ARQUITETURA E TECNOLOGIAS
+2. ARCHITECTURE AND TECHNOLOGIES
 
-- TECNOLOGIAS PRINCIPAIS: JSF (com Facelets) e JPA.
+- CORE TECHNOLOGIES: JSF (with Facelets) and JPA.
 - BACKEND: Java (Managed Beans).
-- PERSISTÊNCIA: JPA (Mapeamento das entidades Produto, Venda e ItemVenda).
-- FRONTEND: Componentes padrão do JSF (h:dataTable, h:commandButton, etc.).
+- PERSISTENCE: JPA (Mapping of entities: Product, Sale, and SaleItem).
+- FRONTEND: Standard JSF components (h:dataTable, h:commandButton, etc.).
 
-3. FLUXO DE USO E FUNCIONALIDADES
+3. WORKFLOW AND FUNCTIONALITIES
 
-O sistema opera em quatro etapas principais:
+The system operates in four main stages:
 
-3.1. MÓDULO: AUTENTICAÇÃO (Login)
-- Propósito: Acesso seguro ao sistema.
-- Funcionalidade: Recebe 'Login' e 'Senha' para validar o usuário e liberar o acesso à área de vendas.
-- Referência: 
+3.1. MODULE: AUTHENTICATION (Login)
+- Purpose: Secure access to the system.
+- Functionality: Receives 'Login' and 'Senha' (Password) to validate the user and grant access to the sales area.
+- Reference: 
 
-3.2. MÓDULO: CRIAÇÃO DE VENDA (Venda)
-- Propósito: Montar o pedido.
-- Seleção de Produto: O usuário escolhe o produto em uma lista (ex: Arroz, Soja, Água Sanitária) e define a Quantidade.
-- Ações: Botão 'Adicionar' inclui o item na tabela. Botão de lixeira ('Excluir') remove o item.
-- Filtro: Permite filtrar produtos por 'Categoria' (ex: Graos).
-- Próxima Etapa: O botão 'Visualizar Pedido' avança para a confirmação.
+3.2. MODULE: SALE CREATION (Venda)
+- Purpose: Assemble the order.
+- Product Selection: The user chooses the product from a list (e.g., Rice, Soy, Bleach) and defines the Quantity.
+- Actions: 'Adicionar' (Add) button includes the item in the table. Trash can icon ('Excluir' - Exclude) removes the item.
+- Filter: Allows filtering products by 'Categoria' (Category, e.g., Grains).
+- Next Step: The 'Visualizar Pedido' (View Order) button advances to confirmation.
 
-3.3. MÓDULO: CONFIRMAÇÃO
-- Propósito: Revisão final e cálculo do total.
-- Resumo: Exibe uma tabela com o Produto, Quantidade e Preço unitário de cada item.
-- Cálculo: Exibe o valor 'Total' da venda (Ex: 27.0).
-- Ação: O botão 'Finalizar' registra a venda (persistência JPA) e conclui a transação.
+3.3. MODULE: CONFIRMATION
+- Purpose: Final review and total calculation.
+- Summary: Displays a table with the Product, Quantity, and Unit Price of each item.
+- Calculation: Displays the 'Total' sale amount (E.g., 27.0).
+- Action: The 'Finalizar' (Finalize) button registers the sale (JPA persistence) and completes the transaction.
 
-3.4. MÓDULO: FEEDBACK
-- Propósito: Notificar o sucesso da operação.
-- Mensagem: Exibe a notificação "Venda Finalizada: Total Pago: [Valor Total]" na página inicial.
+3.4. MODULE: FEEDBACK
+- Purpose: Notify the success of the operation.
+- Message: Displays the notification "Venda Finalizada: Total Pago: [Total Amount]" (Sale Finalized: Total Paid: [Total Amount]) on the homepage.
 
-4. EXEMPLO DE TRANSAÇÃO (RN.05)
+4. TRANSACTION EXAMPLE (RN.05)
 
-- O sistema demonstra o cálculo de total através do seguinte pedido:
-    - Arroz (1 x 13.00) = 13.00
-    - Água Sanitária (1 x 5.00) = 5.00
-    - Bolacha Recheada (3 x 3.00) = 9.00
-- TOTAL DA VENDA = 27.00
+- The system demonstrates the total calculation using the following order:
+    - Arroz (Rice) (1 x 13.00) = 13.00
+    - Água Sanitária (Bleach) (1 x 5.00) = 5.00
+    - Bolacha Recheada (Filled Cookie) (3 x 3.00) = 9.00
+- TOTAL SALE = 27.00
 
-5. REQUISITOS DE EXECUÇÃO
+5. EXECUTION REQUIREMENTS
 
-- Java JDK (Versão compatível com JSF/JPA)
-- Servidor de Aplicações Java (Ex: WildFly, Tomcat com JSF, GlassFish)
-- Gerenciador de Dependências (Ex: Maven ou Gradle)
+- Java JDK (Version compatible with JSF/JPA)
+- Java Application Server (E.g., WildFly, Tomcat with JSF, GlassFish)
+- Dependency Manager (E.g., Maven or Gradle)
