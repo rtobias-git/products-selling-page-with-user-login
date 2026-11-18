@@ -1,4 +1,4 @@
-# 🛒 Sistema de Gestão de Vendas com Login e Controle de Acesso
+# Sistema de Gestão de Vendas com Login
 
 ![Java](https://img.shields.io/badge/Java-17-orange?style=for-the-badge&logo=openjdk&logoColor=white)
 ![Jakarta EE](https://img.shields.io/badge/Jakarta%20EE-10-blue?style=for-the-badge&logo=eclipse&logoColor=white)
@@ -6,11 +6,11 @@
 ![JPA](https://img.shields.io/badge/JPA-Hibernate%2FEclipseLink-59666C?style=for-the-badge)
 ![MySQL](https://img.shields.io/badge/MySQL-Database-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
 
-Aplicação web desenvolvida em **Java com Jakarta EE (JSF/Facelets, JPA, CDI e EJB)** e **PrimeFaces** como projeto de preparação e estudo para a avaliação da disciplina de **Ferramentas de Programação** (IFSP Campus Presidente Epitácio). O sistema implementa autenticação de usuários, controle de acesso por `PhaseListener` e todo o ciclo de criação e finalização de pedidos de venda.
+Aplicação web desenvolvida em Java com Jakarta EE (JSF, JPA, CDI e EJB) e PrimeFaces como projeto prático para a disciplina de Ferramentas de Programação no IFSP (Campus Presidente Epitácio). O sistema conta com autenticação de usuários, controle de rotas por PhaseListener e fluxo de vendas com montagem de pedido.
 
 ---
 
-## 📸 Capturas de Tela
+## Capturas de tela
 
 | Tela de Login | Seleção de Produtos |
 | :---: | :---: |
@@ -26,28 +26,16 @@ Aplicação web desenvolvida em **Java com Jakarta EE (JSF/Facelets, JPA, CDI e 
 
 ---
 
-## ⚙️ Funcionalidades e Fluxo do Sistema
+## Funcionalidades
 
-1. **Autenticação (`login.xhtml` e `LoginController`):**
-   - Validação de **Login** e **Senha** no banco via `PessoaDAO`.
-   - Armazenamento da sessão do usuário logado em bean `@SessionScoped`.
-
-2. **Controle de Acesso (`ControleAcessoListener`):**
-   - Implementa `PhaseListener` do Jakarta Faces para interceptar requisições à página `/venda/criar.xhtml`.
-   - Caso o usuário não esteja autenticado, redireciona automaticamente para `/acesso-negado.xhtml`.
-
-3. **Criação da Venda (`venda/criar.xhtml` e `VendaController`):**
-   - Seleção de produto e definição da quantidade; ao adicionar um produto já presente no pedido, a quantidade é somada automaticamente.
-   - **Filtro por Categoria:** permite filtrar a lista de produtos disponíveis por categoria.
-   - **Exclusão de Item:** botão com ícone de lixeira para remover itens da tabela antes do fechamento.
-
-4. **Confirmação e Persistência (`venda/visualizar.xhtml`):**
-   - Exibe o resumo dos itens, quantidades, preços unitários e o valor **Total** calculado.
-   - Ao clicar em **Finalizar**, registra a data/hora atual (`LocalDateTime.now()`), persiste a `Venda` e seus `ItemVenda` via `VendaDAO`, limpa o carrinho e redireciona para a página inicial com a mensagem flash `"Venda Finzalizada: Total Pago: [valor]"`.
+1. **Autenticação de usuários:** tela de login com validação de credenciais no banco via PessoaDAO e gerenciamento de sessão com SessionScoped.
+2. **Controle de acesso:** interceptação de requisições com PhaseListener para proteger a página de vendas, redirecionando acessos não autorizados para a tela de acesso negado.
+3. **Gerenciamento do pedido:** seleção de itens, soma automática de produtos repetidos, filtro de listagem por categoria e exclusão individual de itens antes da confirmação.
+4. **Fechamento e persistência:** cálculo do valor total, registro da data/hora atual e gravação da venda e dos itens no banco de dados via JPA.
 
 ---
 
-## 📁 Estrutura do Projeto
+## Estrutura do projeto
 
 ```text
 products-selling-page-with-user-login/
@@ -95,15 +83,24 @@ products-selling-page-with-user-login/
 
 ---
 
-## 🚀 Requisitos de Execução
+## Como executar
 
-- **Java JDK 17+**
-- **Servidor de Aplicação Jakarta EE** (ex.: GlassFish 7 ou WildFly)
-- **Banco de Dados MySQL** configurado conforme `web/WEB-INF/glassfish-resources.xml` (`java:app/jdbc/db_jpa`)
-- **Apache NetBeans** (ou ferramenta compatível com projetos Ant)
+### Pré-requisitos
+- Java JDK 17 ou superior
+- Servidor Jakarta EE (como GlassFish 7)
+- Banco de dados MySQL rodando localmente
+- NetBeans configurado para projetos web
+
+### Passos
+1. Clone o repositório:
+   ```bash
+   git clone https://github.com/rtobias-git/products-selling-page-with-user-login.git
+   ```
+2. Ajuste o arquivo `web/WEB-INF/glassfish-resources.xml` com as credenciais do seu banco MySQL.
+3. Abra o projeto na sua IDE e execute o deploy no servidor GlassFish.
 
 ---
 
-## 👤 Autor
+## Autor
 
-Desenvolvido por **Tobias Rafael** ([@rtobias-git](https://github.com/rtobias-git)) — IFSP Campus Presidente Epitácio.
+Desenvolvido por **Tobias Rafael** ([@rtobias-git](https://github.com/rtobias-git)), estudante do IFSP Campus Presidente Epitácio.
